@@ -201,6 +201,14 @@
             text-align: center;
             padding: 25px 0;
             border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
         }
         .header h1 {
             margin: 0;
@@ -432,11 +440,19 @@
         .footer a:hover {
             color: #ffebee;
         }
+        .credit-card-img {
+            width: 200px;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
     <div class="login-container" id="login">
-        <img src="https://via.placeholder.com/240x80?text=Şaka+Bank" alt="Şaka Bank Logo" class="logo">
+        <img src="https://lh3.googleusercontent.com/gg-dl/AA8i_VIyn0Sxmjj0ZzsftGLD6s3NOaJPtOoh_7V3Luv6RIeI1qMfPsF6j_TDERs4kjvpoZiq88UKI3btfrRj5w4rBwF_u2Kz0TtT91dNVs_joUeEJl67xfC8MWyZFeANX8IGbQlKPFZ99ARRATN6JOz24-4Y5EfROww70NUuK-Ux0Qx98bh5" alt="Şaka Bank Logo" class="logo">
         <div class="input-box">
             <input type="text" id="username" placeholder=" " required>
             <label>Kullanıcı Adı</label>
@@ -472,9 +488,10 @@
         </div>
         <div class="main-container" id="main">
             <div class="header">
+                <img src="https://lh3.googleusercontent.com/gg-dl/AA8i_VIyn0Sxmjj0ZzsftGLD6s3NOaJPtOoh_7V3Luv6RIeI1qMfPsF6j_TDERs4kjvpoZiq88UKI3btfrRj5w4rBwF_u2Kz0TtT91dNVs_joUeEJl67xfC8MWyZFeANX8IGbQlKPFZ99ARRATN6JOz24-4Y5EfROww70NUuK-Ux0Qx98bh5" alt="Şaka Bank Logo">
                 <h1>Şaka Bank</h1>
-                <div class="welcome-text" id="welcomeText">Hoş geldin!</div>
             </div>
+            <div class="welcome-text" id="welcomeText">Hoş geldin!</div>
             <p class="balance" id="balanceText">Bakiye: <span id="fakeBalance">0 TL</span></p>
             <div class="actions">
                 <button class="action-btn" onclick="deposit()">Para Yatır</button>
@@ -595,6 +612,7 @@
             </div>
             <div id="creditCard" class="section">
                 <h3>Kredi Kartı</h3>
+                <img src="https://lh3.googleusercontent.com/gg-dl/AA8i_VL-Dbwh737O3E1qI65OU7x1DN6djImi56mrKtQ-RHVAoD1Hpvv-l7N6rS53y5_-ra3-e4aPgia8prVkWkPEqkKl0c2_QMc7pOqX3zjA6hy97a70r5dPrntgJcaX_RffEBsw1mVsq7uBA72h1SPOoZiv8tXvPgey6ieJypB4KpwzkaR6kw" alt="Kredi Kartı" class="credit-card-img">
                 <p>Kart Bakiyesi: <span id="cardBalance">0 TL</span></p>
                 <div class="input-box">
                     <label>Ödeme Miktarı (TL)</label>
@@ -622,7 +640,7 @@
                 <h3>Kampanyalar</h3>
                 <div class="campaign-options">
                     <div class="campaign-option" onclick="joinCampaign('Yaz Fırsatı')">
-                        <img src="https://via.placeholder.com/60x60?text=Yaz" alt="Yaz Fırsatı">
+                        <img src="https://lh3.googleusercontent.com/gg-dl/AA8i_VKNHob9eexvzKBA1s50gklLgxaMb20Ka-onGwdeDtNVkz2M_EFiY6bHQQF1kiTjxGUcswwYJiU1UWNzOvD5oxqxDoyrtJg4gcAqCDR9vKxtC3FviiB5i30QYSg47tDPSSMLib4JWn0mk1korKQAuhgtvzT9paOU5XEHPVhPtdRbVL7oHA" alt="Yaz Fırsatı">
                         <div>
                             <span>Yaz Fırsatı</span>
                             <p>1000 TL harcayana 100 TL hediye!</p>
@@ -630,7 +648,7 @@
                         <span>Katıl</span>
                     </div>
                     <div class="campaign-option" onclick="joinCampaign('Kredi Kartı Bonusu')">
-                        <img src="https://via.placeholder.com/60x60?text=Kart" alt="Kredi Kartı Bonusu">
+                        <img src="https://lh3.googleusercontent.com/gg-dl/AA8i_VLT_9Unh4RcEm0wguRi5_H9bg9A63FpjKKKWuFbfNcaxGqacZj-3oNM9_AsnhkHkaE-EWwSRpCMsy0sYi_waWfE502ctuO4Er7233FUSPZbBWi31Qzb0d_n5hncTw3tPup8W-mH7Nna1csQHKeIDA0Qj3wNsDyE-CLtfBLCM8iclp9Xfw" alt="Kredi Kartı Bonusu">
                         <div>
                             <span>Kredi Kartı Bonusu</span>
                             <p>500 TL harcayana %10 indirim!</p>
@@ -638,7 +656,7 @@
                         <span>Katıl</span>
                     </div>
                     <div class="campaign-option" onclick="joinCampaign('Yatırım Çoşması')">
-                        <img src="https://via.placeholder.com/60x60?text=Yatırım" alt="Yatırım Çoşması">
+                        <img src="https://lh3.googleusercontent.com/gg-dl/AA8i_VJGGbuIrI6iO2dcPD2In4gGtsBcC3MDlz9S5c_i792CaRH4ITLVsegAFEhFFYc7eJ-Yo1e-3cW-Sg2qesKimP0Ol6wDJsrxlTVdzi-zZNlnKbQtplXnCo3x0ULzKxiDx78FhNNax-tKGXpDpmb0NBvixBEgY7vwtZj4p_1mRSm1MpkpsA" alt="Yatırım Çoşması">
                         <div>
                             <span>Yatırım Çoşması</span>
                             <p>12 aylık yatırıma ekstra %5 faiz!</p>
