@@ -10,7 +10,7 @@
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #fff, #f5e6e6);
+            background: linear-gradient(135deg, #f5f7fa, #e0e8f0);
             min-height: 100vh;
             color: #333;
             display: flex;
@@ -18,11 +18,11 @@
             overflow-x: hidden;
         }
         .login-container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 50px;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            width: 450px;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 60px;
+            border-radius: 35px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.1);
+            width: 480px;
             text-align: center;
             position: absolute;
             top: 50%;
@@ -30,8 +30,8 @@
             transform: translate(-50%, -50%) scale(0.9);
             opacity: 0;
             animation: fadeIn 0.8s ease-out forwards;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         @keyframes fadeIn {
             to {
@@ -40,8 +40,8 @@
             }
         }
         .logo {
-            width: 220px;
-            margin-bottom: 40px;
+            width: 240px;
+            margin-bottom: 45px;
             transition: transform 0.3s ease;
         }
         .logo:hover {
@@ -49,28 +49,28 @@
         }
         .input-box {
             position: relative;
-            margin: 25px 0;
+            margin: 30px 0;
         }
         .input-box input {
             width: 100%;
-            padding: 14px 16px;
+            padding: 16px 18px;
             border: 2px solid #ddd;
             border-radius: 15px;
             font-size: 16px;
             box-sizing: border-box;
             transition: all 0.3s ease;
-            background: #f9f9f9;
+            background: #fafafa;
         }
         .input-box input:focus {
             border-color: #d32f2f;
-            box-shadow: 0 0 10px rgba(211, 47, 47, 0.2);
+            box-shadow: 0 0 12px rgba(211, 47, 47, 0.25);
             outline: none;
             background: #fff;
         }
         .input-box label {
             position: absolute;
             top: 50%;
-            left: 16px;
+            left: 18px;
             transform: translateY(-50%);
             color: #888;
             font-size: 16px;
@@ -80,17 +80,17 @@
         }
         .input-box input:focus + label,
         .input-box input:not(:placeholder-shown) + label {
-            top: -10px;
-            left: 12px;
+            top: -12px;
+            left: 14px;
             font-size: 12px;
             color: #d32f2f;
             background: white;
-            padding: 0 5px;
+            padding: 0 6px;
         }
         .login-button {
             background: linear-gradient(45deg, #d32f2f, #f44336);
             color: white;
-            padding: 16px;
+            padding: 18px;
             border: none;
             border-radius: 15px;
             width: 100%;
@@ -102,8 +102,8 @@
             overflow: hidden;
         }
         .login-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(211, 47, 47, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(211, 47, 47, 0.35);
         }
         .login-button::after {
             content: '';
@@ -112,14 +112,14 @@
             left: 50%;
             width: 0;
             height: 0;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             border-radius: 50%;
             transform: translate(-50%, -50%);
             transition: width 0.6s ease, height 0.6s ease;
         }
         .login-button:hover::after {
-            width: 300px;
-            height: 300px;
+            width: 350px;
+            height: 350px;
         }
         .loading-screen {
             display: none;
@@ -128,11 +128,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.85);
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 24px;
+            font-size: 26px;
             flex-direction: column;
             z-index: 1000;
             animation: fadeInLoading 0.5s ease-in;
@@ -142,13 +142,13 @@
             to { opacity: 1; }
         }
         .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #d32f2f;
+            width: 60px;
+            height: 60px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #d32f2f;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-top: 20px;
+            margin-top: 25px;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -157,64 +157,67 @@
         .wrapper {
             display: none;
             flex: 1;
-            max-width: 1400px;
-            margin: 20px auto;
-            gap: 20px;
+            max-width: 1500px;
+            margin: 30px auto;
+            gap: 30px;
+            padding: 0 20px;
         }
         .sidebar {
-            width: 250px;
+            width: 280px;
             background: white;
-            border-radius: 25px;
-            padding: 20px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            border-radius: 30px;
+            padding: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
             position: sticky;
-            top: 20px;
+            top: 30px;
             height: fit-content;
         }
         .sidebar h3 {
             color: #d32f2f;
-            font-size: 18px;
-            margin: 0 0 20px;
+            font-size: 20px;
+            margin: 0 0 25px;
         }
         .sidebar-item {
-            padding: 15px;
+            padding: 16px 20px;
             border-radius: 15px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            font-size: 15px;
         }
         .sidebar-item:hover, .sidebar-item.active {
             background: linear-gradient(45deg, #d32f2f, #f44336);
             color: white;
+            transform: translateX(5px);
         }
         .main-container {
             flex: 1;
             background: white;
-            border-radius: 25px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
-            padding: 25px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 30px;
         }
         .header {
             text-align: center;
-            padding: 20px 0;
+            padding: 25px 0;
             border-bottom: 1px solid #eee;
         }
         .header h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 32px;
             color: #d32f2f;
             font-weight: 700;
         }
         .welcome-text {
-            font-size: 16px;
+            font-size: 18px;
             color: #777;
-            margin-top: 5px;
+            margin-top: 8px;
         }
         .balance {
-            font-size: 40px;
+            font-size: 44px;
             font-weight: 700;
             text-align: center;
-            margin: 25px 0;
+            margin: 30px 0;
             background: linear-gradient(45deg, #d32f2f, #f44336);
             -webkit-background-clip: text;
             color: transparent;
@@ -229,58 +232,58 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            padding: 20px 0;
+            gap: 20px;
+            padding: 25px 0;
         }
         .action-btn {
             background: linear-gradient(45deg, #d32f2f, #f44336);
             color: white;
-            padding: 15px 25px;
+            padding: 16px 30px;
             border: none;
             border-radius: 15px;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.2s ease;
         }
         .action-btn:hover {
             transform: scale(1.05);
         }
         .section {
             display: none;
-            padding: 25px;
+            padding: 30px;
             background: #fafafa;
-            border-radius: 20px;
-            margin: 20px 0;
+            border-radius: 25px;
+            margin: 25px 0;
         }
         .active {
             display: block;
         }
         .input-box label {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             color: #555;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             display: block;
             text-align: left;
         }
         .input-box input, .input-box textarea {
             width: 100%;
-            padding: 12px 16px;
-            margin-bottom: 15px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
             border: 2px solid #ddd;
             border-radius: 15px;
             font-size: 16px;
             box-sizing: border-box;
         }
         .input-box textarea {
-            height: 80px;
+            height: 100px;
             resize: vertical;
         }
         .input-box select {
             width: 100%;
-            padding: 12px 16px;
-            margin-bottom: 15px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
             border: 2px solid #ddd;
             border-radius: 15px;
             font-size: 16px;
@@ -289,38 +292,38 @@
         .button {
             background: linear-gradient(45deg, #d32f2f, #f44336);
             color: white;
-            padding: 14px;
+            padding: 16px;
             border: none;
             border-radius: 15px;
             font-size: 16px;
             font-weight: 600;
             width: 100%;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.2s ease;
         }
         .button:hover {
             transform: scale(1.02);
         }
         .history {
             text-align: left;
-            max-height: 300px;
+            max-height: 350px;
             overflow-y: auto;
-            padding: 20px;
+            padding: 25px;
             border-radius: 20px;
             background: white;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            font-size: 14px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+            font-size: 15px;
             line-height: 1.8;
         }
         .history p {
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 10px;
+            margin: 12px 0;
+            padding: 16px;
+            border-radius: 12px;
             background: #f5f5f5;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: transform 0.2s;
+            transition: transform 0.2s ease;
         }
         .history p:hover {
             transform: translateX(5px);
@@ -334,92 +337,106 @@
             background: #d32f2f;
             color: white;
             border: none;
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 13px;
+            transition: transform 0.2s ease;
+        }
+        .history button:hover {
+            transform: scale(1.05);
         }
         .joke-box {
-            margin: 20px 0;
-            font-size: 14px;
+            margin: 25px 0;
+            font-size: 15px;
             color: #d32f2f;
             font-style: italic;
             background: #fff0f0;
-            padding: 15px;
+            padding: 20px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
         .donation-options, .campaign-options {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
         .donation-option, .campaign-option {
             background: white;
-            padding: 15px;
+            padding: 20px;
             border-radius: 15px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
         }
         .donation-option:hover, .campaign-option:hover {
             transform: scale(1.02);
+        }
+        .campaign-option img {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+        .campaign-option div {
+            flex: 1;
         }
         .donation-option span, .campaign-option span {
             font-weight: 600;
             color: #d32f2f;
         }
         .campaign-option p {
-            margin: 5px 0;
-            font-size: 12px;
+            margin: 6px 0;
+            font-size: 13px;
             color: #555;
         }
         .quick-actions {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
         }
         .quick-action {
             background: #fff;
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+            transition: transform 0.2s ease;
         }
         .quick-action:hover {
             transform: scale(1.05);
         }
         .quick-action span {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 600;
             color: #d32f2f;
         }
         .footer {
-            background: #d32f2f;
+            background: linear-gradient(45deg, #d32f2f, #f44336);
             color: white;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
-            font-size: 14px;
+            font-size: 15px;
             margin-top: auto;
+            border-radius: 0 0 15px 15px;
         }
         .footer a {
             color: #fff;
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 12px;
+            transition: color 0.3s ease;
         }
         .footer a:hover {
-            text-decoration: underline;
+            color: #ffebee;
         }
     </style>
 </head>
 <body>
     <div class="login-container" id="login">
-        <img src="https://via.placeholder.com/220x70?text=Şaka+Bank" alt="Şaka Bank Logo" class="logo">
+        <img src="https://via.placeholder.com/240x80?text=Şaka+Bank" alt="Şaka Bank Logo" class="logo">
         <div class="input-box">
             <input type="text" id="username" placeholder=" " required>
             <label>Kullanıcı Adı</label>
@@ -444,12 +461,14 @@
             <div class="sidebar-item" onclick="showSection('transfer')">Gönder</div>
             <div class="sidebar-item" onclick="showSection('donation')">Bağış</div>
             <div class="sidebar-item" onclick="showSection('support')">Destek</div>
+            <div class="sidebar-item" onclick="showSection('supportMessages')">Destek Mesajları</div>
             <div class="sidebar-item" onclick="showSection('bills')">Fatura Ödeme</div>
             <div class="sidebar-item" onclick="showSection('creditCard')">Kredi Kartı</div>
             <div class="sidebar-item" onclick="showSection('investment')">Yatırım</div>
             <div class="sidebar-item" onclick="showSection('campaigns')">Kampanyalar</div>
             <div class="sidebar-item" onclick="showSection('exchange')">Döviz</div>
             <div class="sidebar-item" onclick="showSection('notifications')">Bildirimler</div>
+            <div class="sidebar-item" onclick="showSection('qrPayment')">QR Ödeme</div>
         </div>
         <div class="main-container" id="main">
             <div class="header">
@@ -467,6 +486,7 @@
                 <div class="quick-action" onclick="showSection('credit')"><span>Kredi Al</span></div>
                 <div class="quick-action" onclick="showSection('bills')"><span>Fatura Öde</span></div>
                 <div class="quick-action" onclick="showSection('campaigns')"><span>Kampanyalar</span></div>
+                <div class="quick-action" onclick="showSection('qrPayment')"><span>QR Ödeme</span></div>
             </div>
             <div id="account" class="section active">
                 <h3 style="margin-top: 25px;">Hesap Geçmişi</h3>
@@ -550,6 +570,12 @@
                 <button class="button" onclick="sendSupport()">Gönder</button>
                 <div class="joke-box" id="supportJoke">Size hemen yardımcı ol(a)mayacağız!</div>
             </div>
+            <div id="supportMessages" class="section">
+                <h3>Destek Mesajları</h3>
+                <div class="history" id="supportMessageList"></div>
+                <button class="button" onclick="clearSupportMessages()">Tümünü Temizle</button>
+                <div class="joke-box" id="supportMessageJoke">Destek mesajların burada, şaka değil!</div>
+            </div>
             <div id="bills" class="section">
                 <div class="input-box">
                     <label>Fatura Türü</label>
@@ -596,6 +622,7 @@
                 <h3>Kampanyalar</h3>
                 <div class="campaign-options">
                     <div class="campaign-option" onclick="joinCampaign('Yaz Fırsatı')">
+                        <img src="https://via.placeholder.com/60x60?text=Yaz" alt="Yaz Fırsatı">
                         <div>
                             <span>Yaz Fırsatı</span>
                             <p>1000 TL harcayana 100 TL hediye!</p>
@@ -603,6 +630,7 @@
                         <span>Katıl</span>
                     </div>
                     <div class="campaign-option" onclick="joinCampaign('Kredi Kartı Bonusu')">
+                        <img src="https://via.placeholder.com/60x60?text=Kart" alt="Kredi Kartı Bonusu">
                         <div>
                             <span>Kredi Kartı Bonusu</span>
                             <p>500 TL harcayana %10 indirim!</p>
@@ -610,6 +638,7 @@
                         <span>Katıl</span>
                     </div>
                     <div class="campaign-option" onclick="joinCampaign('Yatırım Çoşması')">
+                        <img src="https://via.placeholder.com/60x60?text=Yatırım" alt="Yatırım Çoşması">
                         <div>
                             <span>Yatırım Çoşması</span>
                             <p>12 aylık yatırıma ekstra %5 faiz!</p>
@@ -641,6 +670,15 @@
                 <button class="button" onclick="clearNotifications()">Tümünü Temizle</button>
                 <div class="joke-box" id="notificationJoke">Bildirimlerin şaka değil, gerçek!</div>
             </div>
+            <div id="qrPayment" class="section">
+                <h3>QR ile Ödeme</h3>
+                <div class="input-box">
+                    <label>Ödeme Miktarı (TL)</label>
+                    <input type="number" id="qrAmount" placeholder="Ödemek istediğin miktarı gir">
+                </div>
+                <button class="button" onclick="payWithQR()">QR ile Öde</button>
+                <div class="joke-box" id="qrJoke">QR ile ödeme yap, şaka gibi hızlı!</div>
+            </div>
         </div>
     </div>
 
@@ -652,6 +690,7 @@
         let balance = 0;
         let history = [];
         let notifications = [];
+        let supportMessages = [];
         let username = "";
         let cardBalance = 0;
         let investments = [];
@@ -743,28 +782,48 @@
             document.getElementById("notificationJoke").innerText = "Bildirimler temizlendi, şaka bitti!";
         }
 
+        function addSupportMessage(message) {
+            supportMessages.unshift(`${username}: ${message}`);
+            if (supportMessages.length > 10) supportMessages.pop();
+            document.getElementById("supportMessageList").innerHTML = supportMessages.map(m => 
+                `<p>${m} <span>${new Date().toLocaleTimeString()}</span></p>`
+            ).join("");
+        }
+
+        function clearSupportMessages() {
+            supportMessages = [];
+            document.getElementById("supportMessageList").innerHTML = "";
+            document.getElementById("supportMessageJoke").innerText = "Destek mesajları temizlendi!";
+        }
+
         function generateReceipt(entry) {
-            const receiptWindow = window.open('', '_blank', 'width=600,height=400');
+            const receiptWindow = window.open('', '_blank', 'width=600,height=600');
             receiptWindow.document.write(`
                 <html>
                 <head>
                     <title>Şaka Bank Dekont</title>
                     <style>
-                        body { font-family: 'Poppins', Arial, sans-serif; padding: 20px; text-align: center; }
-                        .receipt { border: 2px solid #d32f2f; padding: 20px; border-radius: 15px; max-width: 500px; margin: 0 auto; }
-                        h2 { color: #d32f2f; }
-                        p { margin: 10px 0; }
-                        .footer { font-size: 12px; color: #777; margin-top: 20px; }
+                        body { font-family: 'Poppins', Arial, sans-serif; padding: 30px; text-align: center; background: #f9f9f9; }
+                        .receipt { border: 2px solid #d32f2f; padding: 25px; border-radius: 15px; max-width: 500px; margin: 0 auto; background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+                        h2 { color: #d32f2f; font-size: 24px; margin-bottom: 20px; }
+                        p { margin: 12px 0; font-size: 15px; }
+                        .detail { display: flex; justify-content: space-between; border-bottom: 1px dashed #eee; padding-bottom: 10px; }
+                        .detail strong { color: #555; }
+                        .footer { font-size: 13px; color: #777; margin-top: 25px; font-style: italic; }
+                        .stamp { color: #d32f2f; font-size: 14px; margin-top: 20px; }
                     </style>
                 </head>
                 <body>
                     <div class="receipt">
                         <h2>Şaka Bank Dekont</h2>
-                        <p><strong>Kullanıcı:</strong> ${username}</p>
-                        <p><strong>İşlem:</strong> ${entry}</p>
-                        <p><strong>Tarih:</strong> ${new Date().toLocaleString()}</p>
-                        <p><strong>Bakiye:</strong> ${balance} TL</p>
-                        <p class="footer">Şaka Bank - Paranızı şakaya vuruyoruz!</p>
+                        <div class="detail"><strong>Kullanıcı:</strong> <span>${username}</span></div>
+                        <div class="detail"><strong>İşlem Türü:</strong> <span>${entry.split(':')[0]}</span></div>
+                        <div class="detail"><strong>Miktar:</strong> <span>${entry.includes(':') ? entry.split(':')[1].trim() : 'N/A'}</span></div>
+                        <div class="detail"><strong>Tarih:</strong> <span>${new Date().toLocaleString()}</span></div>
+                        <div class="detail"><strong>Güncel Bakiye:</strong> <span>${balance} TL</span></div>
+                        <div class="detail"><strong>İşlem Kodu:</strong> <span>SB${Math.floor(Math.random() * 1000000)}</span></div>
+                        <p class="stamp">Şaka Bank Onay Damgası</p>
+                        <p class="footer">Şaka Bank - Paranızı şakaya vuruyoruz! (Ama dekont ciddi)</p>
                     </div>
                 </body>
                 </html>
@@ -830,6 +889,11 @@
         }
 
         function sendSupport() {
+            const message = document.getElementById("supportMsg").value;
+            if (!message) {
+                document.getElementById("supportJoke").innerText = "Mesaj yazmadan gönderemezsin, şaka mı bu?";
+                return;
+            }
             const replies = [
                 "Mesajın alındı! (Ama şaka, çözmeyeceğiz)",
                 "Destek ekibi şu an oyun oynuyor!",
@@ -838,6 +902,7 @@
             const reply = replies[Math.floor(Math.random() * replies.length)];
             document.getElementById("supportJoke").innerText = reply;
             addNotification("Destek mesajınız alındı!");
+            addSupportMessage(message);
             document.getElementById("supportMsg").value = "";
         }
 
@@ -1013,6 +1078,25 @@
         function updateExchange() {
             document.getElementById("usdBalance").innerText = `${usdBalance} USD`;
             document.getElementById("eurBalance").innerText = `${eurBalance} EUR`;
+        }
+
+        function payWithQR() {
+            const amount = parseInt(document.getElementById("qrAmount").value);
+            if (isNaN(amount) || amount <= 0) {
+                document.getElementById("qrJoke").innerText = "Geçerli bir miktar gir!";
+                return;
+            }
+            if (amount > balance) {
+                document.getElementById("qrJoke").innerText = "Bakiyen yetmez!";
+                return;
+            }
+
+            balance -= amount;
+            updateBalance();
+            addHistory(`QR Ödeme: ${amount} TL`);
+            addNotification(`${amount} TL QR ile ödendi!`);
+            document.getElementById("qrJoke").innerText = `${amount} TL QR ile ödendi! (Şaka gibi hızlı!)`;
+            document.getElementById("qrAmount").value = "";
         }
     </script>
 </body>
