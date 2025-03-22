@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mumin BANK - Giriş</title>
+    <title>Şaka Bank - Genç Bankacılık</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', Arial, sans-serif;
+            font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #e6eef5, #c9d6df);
+            background: linear-gradient(135deg, #fff, #f5e6e6);
             min-height: 100vh;
-            overflow-x: hidden;
+            color: #333;
+            display: flex;
+            flex-direction: column;
         }
         .login-container {
-            background-color: white;
+            background: white;
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-            width: 450px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            width: 400px;
             text-align: center;
             position: absolute;
             top: 50%;
@@ -26,42 +29,38 @@
             transform: translate(-50%, -50%);
         }
         .logo {
-            width: 180px;
-            margin-bottom: 25px;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+            width: 200px;
+            margin-bottom: 30px;
+            filter: brightness(1.1);
         }
-        .input-box input, .input-box textarea {
+        .input-box input {
             width: 100%;
-            padding: 14px;
-            margin: 12px 0;
-            border: 1px solid #d1d9e0;
-            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            border-radius: 15px;
             font-size: 16px;
-            transition: border-color 0.3s;
             box-sizing: border-box;
+            transition: border-color 0.3s;
         }
-        .input-box textarea {
-            resize: vertical;
-            height: 80px;
-        }
-        .input-box input:focus, .input-box textarea:focus {
-            border-color: #0066cc;
+        .input-box input:focus {
+            border-color: #d32f2f;
             outline: none;
         }
         .login-button {
-            background-color: #0066cc;
+            background: linear-gradient(45deg, #d32f2f, #f44336);
             color: white;
-            padding: 14px;
+            padding: 16px;
             border: none;
-            border-radius: 8px;
+            border-radius: 15px;
             width: 100%;
             font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: transform 0.2s;
         }
         .login-button:hover {
-            background-color: #005bb5;
-            transform: translateY(-2px);
+            transform: scale(1.05);
         }
         .loading-screen {
             display: none;
@@ -70,131 +69,285 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.85);
+            background: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 26px;
+            font-size: 24px;
             flex-direction: column;
             z-index: 1000;
         }
         .spinner {
-            width: 60px;
-            height: 60px;
-            border: 6px solid #f3f3f3;
-            border-top: 6px solid #0066cc;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #d32f2f;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-top: 25px;
+            margin-top: 20px;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .main-container {
+        .wrapper {
             display: none;
-            margin: 40px auto;
-            max-width: 1000px;
-            background-color: white;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
-        }
-        .header {
-            background: linear-gradient(90deg, #2c3e50, #34495e);
-            color: white;
-            padding: 40px;
-            border-radius: 15px 15px 0 0;
-            text-align: center;
-            margin: -50px -50px 30px -50px;
-        }
-        .welcome-text {
-            font-size: 24px;
-            margin-top: 10px;
-        }
-        .nav {
-            display: flex;
-            justify-content: center;
+            flex: 1;
+            max-width: 1400px;
+            margin: 20px auto;
             gap: 20px;
-            margin: 30px 0;
-            flex-wrap: wrap;
         }
-        .nav button {
-            background-color: #3498db;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
+        .sidebar {
+            width: 250px;
+            background: white;
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+        .sidebar h3 {
+            color: #d32f2f;
+            font-size: 18px;
+            margin: 0 0 20px;
+        }
+        .sidebar-item {
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
             cursor: pointer;
-            font-size: 16px;
             transition: all 0.3s;
         }
-        .nav button:hover {
-            background-color: #2980b9;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        .sidebar-item:hover, .sidebar-item.active {
+            background: linear-gradient(45deg, #d32f2f, #f44336);
+            color: white;
+        }
+        .main-container {
+            flex: 1;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            padding: 25px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #d32f2f;
+            font-weight: 700;
+        }
+        .welcome-text {
+            font-size: 16px;
+            color: #777;
+            margin-top: 5px;
+        }
+        .balance {
+            font-size: 40px;
+            font-weight: 700;
+            text-align: center;
+            margin: 25px 0;
+            background: linear-gradient(45deg, #d32f2f, #f44336);
+            -webkit-background-clip: text;
+            color: transparent;
+            transition: transform 0.3s;
+        }
+        .balance.red {
+            background: linear-gradient(45deg, #b71c1c, #d32f2f);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px 0;
+        }
+        .action-btn {
+            background: linear-gradient(45deg, #d32f2f, #f44336);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .action-btn:hover {
+            transform: scale(1.05);
         }
         .section {
             display: none;
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #f9fafb;
-            border-radius: 10px;
+            padding: 25px;
+            background: #fafafa;
+            border-radius: 20px;
+            margin: 20px 0;
         }
         .active {
             display: block;
         }
-        .button {
-            background-color: #e67e22;
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin: 10px;
+        .input-box label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+            display: block;
+            text-align: left;
+        }
+        .input-box input, .input-box textarea {
+            width: 100%;
+            padding: 12px 16px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 15px;
             font-size: 16px;
-            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+        .input-box textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        .input-box select {
+            width: 100%;
+            padding: 12px 16px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .button {
+            background: linear-gradient(45deg, #d32f2f, #f44336);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.2s;
         }
         .button:hover {
-            background-color: #d35400;
-            transform: translateY(-2px);
-        }
-        .balance {
-            font-size: 32px;
-            margin: 25px 0;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        .balance.red {
-            color: #e74c3c;
-        }
-        .balance.green {
-            color: #27ae60;
+            transform: scale(1.02);
         }
         .history {
             text-align: left;
-            max-height: 250px;
+            max-height: 300px;
             overflow-y: auto;
-            border: 1px solid #e6ecef;
+            padding: 20px;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .history p {
+            margin: 10px 0;
             padding: 15px;
-            border-radius: 8px;
-            background-color: white;
+            border-radius: 10px;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        .history p:hover {
+            transform: translateX(5px);
+            background: #ececec;
+        }
+        .history span {
+            font-weight: 600;
+            color: #d32f2f;
+        }
+        .history button {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
         }
         .joke-box {
-            margin: 25px 0;
-            font-size: 18px;
-            color: #e74c3c;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #d32f2f;
             font-style: italic;
-            background-color: #fff3f3;
+            background: #fff0f0;
             padding: 15px;
-            border-radius: 8px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .donation-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .donation-option {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .donation-option:hover {
+            transform: scale(1.02);
+        }
+        .donation-option span {
+            font-weight: 600;
+            color: #d32f2f;
+        }
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .quick-action {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .quick-action:hover {
+            transform: scale(1.05);
+        }
+        .quick-action span {
+            font-size: 16px;
+            font-weight: 600;
+            color: #d32f2f;
+        }
+        .footer {
+            background: #d32f2f;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: auto;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="login-container" id="login">
-        <img src="https://yt3.googleusercontent.com/D6fqYWdJlRhqy2JrXSJnIEkTojWiXbarjlLTvL4kqiXUdvDGdk7rJzTitk_cqDSZTY2tCXC2eg=s900-c-k-c0x00ffffff-no-rj" alt="mumin Bank Logo" class="logo">
-        <h2>Mumin Bank'a Hoş Geldiniz</h2>
+        <img src="https://via.placeholder.com/200x60?text=Şaka+Bank" alt="Şaka Bank Logo" class="logo">
         <div class="input-box">
             <input type="text" id="username" placeholder="Kullanıcı Adı">
             <input type="password" id="password" placeholder="Şifre">
@@ -207,56 +360,178 @@
         <div class="spinner"></div>
     </div>
 
-    <div class="main-container" id="main">
-        <div class="header">
-            <h1>mumin Bank</h1>
-            <p>Paranızı Kaybetmenin En Şık Yolu!</p>
-            <div class="welcome-text" id="welcomeText">Hoş geldiniz!</div>
+    <div class="wrapper" id="wrapper">
+        <div class="sidebar" id="sidebar">
+            <h3>Hızlı Erişim</h3>
+            <div class="sidebar-item active" onclick="showSection('account')">Hesap</div>
+            <div class="sidebar-item" onclick="showSection('credit')">Kredi</div>
+            <div class="sidebar-item" onclick="showSection('transfer')">Gönder</div>
+            <div class="sidebar-item" onclick="showSection('donation')">Bağış</div>
+            <div class="sidebar-item" onclick="showSection('support')">Destek</div>
+            <div class="sidebar-item" onclick="showSection('bills')">Fatura Ödeme</div>
+            <div class="sidebar-item" onclick="showSection('creditCard')">Kredi Kartı</div>
+            <div class="sidebar-item" onclick="showSection('investment')">Yatırım</div>
         </div>
-        <div class="nav">
-            <button onclick="showSection('account')">Hesap</button>
-            <button onclick="showSection('credit')">Kredi Başvurusu</button>
-            <button onclick="showSection('support')">Müşteri Hizmetleri</button>
-            <button onclick="showSection('transfer')">Para Gönderme</button>
-        </div>
-        <div id="account" class="section active">
-            <h2>Hesap Bilgileri</h2>
-            <p class="balance" id="balanceText">Bakiye: <span id="fakeBalance">0 TL</span></p>
-            <button class="button" onclick="deposit()">Para Yatır</button>
-            <button class="button" onclick="withdraw()">Para Çek</button>
-            <button class="button" onclick="surprise()">Sürpriz İşlem</button>
-            <h3>Hesap Geçmişi</h3>
-            <div class="history" id="history"></div>
-            <div class="joke-box" id="jokeText">Bankamıza hoş geldiniz!</div>
-        </div>
-        <div id="credit" class="section">
-            <h2>Kredi Başvurusu</h2>
-            <input type="number" id="creditAmount" placeholder="Kredi Miktarı (TL)" class="input-box">
-            <button class="button" onclick="applyCredit()">Başvur</button>
-            <div class="joke-box" id="creditJoke">Kredi mi? Belki bir lolipop veririz!</div>
-        </div>
-        <div id="support" class="section">
-            <h2>Müşteri Hizmetleri</h2>
-            <input type="text" id="supportMsg" placeholder="Sorununuzu yazın" class="input-box">
-            <button class="button" onclick="sendSupport()">Gönder</button>
-            <div class="joke-box" id="supportJoke">Size hemen yardımcı ol(a)mayacağız!</div>
-        </div>
-        <div id="transfer" class="section">
-            <h2>Para Gönderme</h2>
-            <div class="input-box">
-                <input type="text" id="transferIban" placeholder="IBAN (TR ile başlayabilir)">
-                <input type="number" id="transferAmount" placeholder="Gönderilecek Miktar (TL)">
-                <textarea id="transferNote" placeholder="Açıklama (Opsiyonel)"></textarea>
+        <div class="main-container" id="main">
+            <div class="header">
+                <h1>Şaka Bank</h1>
+                <div class="welcome-text" id="welcomeText">Hoş geldin!</div>
             </div>
-            <button class="button" onclick="sendMoney()">Gönder</button>
-            <div class="joke-box" id="transferJoke">Paranızı güvenle... bir yere gönderiyoruz!</div>
+            <p class="balance" id="balanceText">Bakiye: <span id="fakeBalance">0 TL</span></p>
+            <div class="actions">
+                <button class="action-btn" onclick="deposit()">Para Yatır</button>
+                <button class="action-btn" onclick="withdraw()">Para Çek</button>
+                <button class="action-btn" onclick="surprise()">Sürpriz</button>
+            </div>
+            <div class="quick-actions">
+                <div class="quick-action" onclick="showSection('transfer')"><span>Arkadaşa Gönder</span></div>
+                <div class="quick-action" onclick="showSection('donation')"><span>Bağış Yap</span></div>
+                <div class="quick-action" onclick="showSection('credit')"><span>Kredi Al</span></div>
+                <div class="quick-action" onclick="showSection('bills')"><span>Fatura Öde</span></div>
+            </div>
+            <div id="account" class="section active">
+                <h3 style="margin-top: 25px;">Hesap Geçmişi</h3>
+                <div class="history" id="history"></div>
+                <div class="joke-box" id="jokeText">Şaka Bank’a hoş geldin! Paranı güvende tutmama sözü!</div>
+            </div>
+            <div id="credit" class="section">
+                <div class="input-box">
+                    <label>Kredi Miktarı (TL)</label>
+                    <input type="number" id="creditAmount" placeholder="Başvurmak istediğin miktarı gir">
+                </div>
+                <button class="button" onclick="applyCredit()">Başvur</button>
+                <div class="joke-box" id="creditJoke">Kredi mi? Belki bir lolipop veririz!</div>
+            </div>
+            <div id="transfer" class="section">
+                <div class="input-box">
+                    <label>IBAN</label>
+                    <input type="text" id="transferIban" placeholder="TR ile başlayan IBAN gir">
+                    <label>Gönderilecek Miktar (TL)</label>
+                    <input type="number" id="transferAmount" placeholder="Göndermek istediğin miktarı gir">
+                    <label>Açıklama</label>
+                    <textarea id="transferNote" placeholder="Açıklama (isteğe bağlı)"></textarea>
+                </div>
+                <button class="button" onclick="sendMoney()">Gönder</button>
+                <div class="joke-box" id="transferJoke">Paranı güvenle... bir yere gönderiyoruz!</div>
+            </div>
+            <div id="donation" class="section">
+                <div class="input-box">
+                    <label>Bağış Miktarı (TL)</label>
+                    <input type="number" id="donationAmount" placeholder="Bağışlamak istediğin miktarı gir">
+                </div>
+                <div class="donation-options">
+                    <div class="donation-option" onclick="donate('Türk Kızılayı')">
+                        <span>Türk Kızılayı</span>
+                        <span>Bağış Yap</span>
+                    </div>
+                    <div class="donation-option" onclick="donate('LÖSEV')">
+                        <span>LÖSEV</span>
+                        <span>Bağış Yap</span>
+                    </div>
+                    <div class="donation-option" onclick="donate('TEMA Vakfı')">
+                        <span>TEMA Vakfı</span>
+                        <span>Bağış Yap</span>
+                    </div>
+                    <div class="donation-option" onclick="donate('Darüşşafaka Cemiyeti')">
+                        <span>Darüşşafaka Cemiyeti</span>
+                        <span>Bağış Yap</span>
+                    </div>
+                    <div class="donation-option" onclick="donate('AÇEV')">
+                        <span>AÇEV</span>
+                        <span>Bağış Yap</span>
+                    </div>
+                    <div class="donation-option" onclick="donate('TOÇEV')">
+                        <span>TOÇEV</span>
+                        <span>Bağış Yap</span>
+                    </div>
+                    <div class="donation-option" onclick="donate('ÇYDD')">
+                        <span>ÇYDD</span>
+                        <span>Bağış Yap</span>
+                    </div>
+                    <div class="donation-option" onclick="donate('Mehmetçik Vakfı')">
+                        <span>Mehmetçik Vakfı</span>
+                        <span>Bağış Yap</span>
+                    </div>
+                    <div class="donation-option" onclick="donate('TEV')">
+                        <span>TEV</span>
+                        <span>Bağış Yap</span>
+                    </div>
+                    <div class="donation-option" onclick="donate('İHH İnsani Yardım Vakfı')">
+                        <span>İHH İnsani Yardım Vakfı</span>
+                        <span>Bağış Yap</span>
+                    </div>
+                </div>
+                <div class="joke-box" id="donationJoke">Bağışınla dünyayı şakalara boğ!</div>
+            </div>
+            <div id="support" class="section">
+                <div class="input-box">
+                    <label>Mesajın</label>
+                    <input type="text" id="supportMsg" placeholder="Sorunu buraya yaz">
+                </div>
+                <button class="button" onclick="sendSupport()">Gönder</button>
+                <div class="joke-box" id="supportJoke">Size hemen yardımcı ol(a)mayacağız!</div>
+            </div>
+            <div id="bills" class="section">
+                <div class="input-box">
+                    <label>Fatura Türü</label>
+                    <select id="billType">
+                        <option value="electricity">Elektrik</option>
+                        <option value="water">Su</option>
+                        <option value="phone">Telefon</option>
+                        <option value="internet">İnternet</option>
+                    </select>
+                    <label>Fatura Miktarı (TL)</label>
+                    <input type="number" id="billAmount" placeholder="Fatura tutarını gir">
+                    <label>Fatura Numarası</label>
+                    <input type="text" id="billNumber" placeholder="Fatura numarasını gir">
+                </div>
+                <button class="button" onclick="payBill()">Öde</button>
+                <div class="joke-box" id="billJoke">Faturalarını öde, şaka değil!</div>
+            </div>
+            <div id="creditCard" class="section">
+                <h3>Kredi Kartı</h3>
+                <p>Kart Bakiyesi: <span id="cardBalance">0 TL</span></p>
+                <div class="input-box">
+                    <label>Ödeme Miktarı (TL)</label>
+                    <input type="number" id="cardPaymentAmount" placeholder="Ödemek istediğin miktarı gir">
+                </div>
+                <button class="button" onclick="payCreditCard()">Öde</button>
+                <button class="button" onclick="spendCreditCard()">Harcama Yap (Rastgele)</button>
+                <div class="joke-box" id="cardJoke">Kredi kartınla şaka yapma!</div>
+            </div>
+            <div id="investment" class="section">
+                <div class="input-box">
+                    <label>Yatırım Miktarı (TL)</label>
+                    <input type="number" id="investmentAmount" placeholder="Yatırmak istediğin miktarı gir">
+                    <label>Vade Süresi (Ay)</label>
+                    <select id="investmentTerm">
+                        <option value="3">3 Ay (%5 Faiz)</option>
+                        <option value="6">6 Ay (%10 Faiz)</option>
+                        <option value="12">12 Ay (%20 Faiz)</option>
+                    </select>
+                </div>
+                <button class="button" onclick="invest()">Yatır</button>
+                <div class="joke-box" id="investmentJoke">Paran büyüsün... ya da şaka olsun!</div>
+            </div>
         </div>
+    </div>
+
+    <div class="footer" id="footer" style="display: none;">
+        <p>Şaka Bank © 2025 | <a href="#">Gizlilik</a> | <a href="#">Şartlar</a> | <a href="#">İletişim</a></p>
     </div>
 
     <script>
         let balance = 0;
         let history = [];
         let username = "";
+        let cardBalance = 0;
+        let investments = [];
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("login").style.display = "block";
+            document.getElementById("wrapper").style.display = "none";
+            document.getElementById("footer").style.display = "none";
+        });
 
         function login() {
             username = document.getElementById("username").value;
@@ -269,8 +544,9 @@
             document.getElementById("loading").style.display = "flex";
             setTimeout(() => {
                 document.getElementById("loading").style.display = "none";
-                document.getElementById("main").style.display = "block";
-                document.getElementById("welcomeText").innerText = `Hoş geldiniz, ${username}!`;
+                document.getElementById("wrapper").style.display = "flex";
+                document.getElementById("footer").style.display = "block";
+                document.getElementById("welcomeText").innerText = `Hoş geldin, ${username}!`;
             }, 2000);
         }
 
@@ -278,7 +554,11 @@
             document.querySelectorAll(".section").forEach(section => {
                 section.classList.remove("active");
             });
+            document.querySelectorAll(".sidebar-item").forEach(item => {
+                item.classList.remove("active");
+            });
             document.getElementById(sectionId).classList.add("active");
+            document.querySelector(`.sidebar-item[onclick="showSection('${sectionId}')"]`).classList.add("active");
         }
 
         function deposit() {
@@ -286,7 +566,7 @@
             balance += amount;
             updateBalance();
             addHistory(`Para Yatırma: ${amount} TL`);
-            document.getElementById("jokeText").innerText = "Paranı yatırdık... ya da harcadık, kim bilir?";
+            document.getElementById("jokeText").innerText = "Paran yattı... ya da parti fonuna gitti!";
         }
 
         function withdraw() {
@@ -294,13 +574,13 @@
             balance -= amount;
             updateBalance();
             addHistory(`Para Çekme: ${amount} TL`);
-            document.getElementById("jokeText").innerText = "Para çekildi! Kasiyerler tatilde harcıyor.";
+            document.getElementById("jokeText").innerText = "Paran çekildi! Kahve makinesi teşekkür eder.";
         }
 
         function surprise() {
             const surprises = [
-                "Hesabına 1 milyon TL yatırdık! (Tabii ki mumin)",
-                "Paranı yanlışlıkla sokak kedilerine bağışladık!",
+                "Hesabına 1 milyon TL yattı! (Şaka şaka)",
+                "Paran sokak DJ’lerine gitti!",
                 "Hesabın hacklendi! Ama zaten boştu."
             ];
             const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
@@ -315,41 +595,60 @@
             const balanceElement = document.getElementById("fakeBalance");
             balanceElement.innerText = `${balance} TL`;
             const balanceText = document.getElementById("balanceText");
-            balanceText.classList.remove("red", "green");
+            balanceText.classList.remove("red");
             if (balance <= 0) {
                 balanceText.classList.add("red");
-            } else {
-                balanceText.classList.add("green");
             }
         }
 
         function addHistory(entry) {
             history.unshift(entry);
             if (history.length > 5) history.pop();
-            document.getElementById("history").innerHTML = history.map(h => `<p>${h}</p>`).join("");
+            document.getElementById("history").innerHTML = history.map(h => 
+                `<p>${h} <span>${new Date().toLocaleTimeString()}</span> <button onclick="generateReceipt('${h}')">Dekont İste</button></p>`
+            ).join("");
+        }
+
+        function generateReceipt(entry) {
+            const receiptWindow = window.open('', '_blank', 'width=600,height=400');
+            receiptWindow.document.write(`
+                <html>
+                <head>
+                    <title>Şaka Bank Dekont</title>
+                    <style>
+                        body { font-family: 'Poppins', Arial, sans-serif; padding: 20px; text-align: center; }
+                        .receipt { border: 2px solid #d32f2f; padding: 20px; border-radius: 15px; max-width: 500px; margin: 0 auto; }
+                        h2 { color: #d32f2f; }
+                        p { margin: 10px 0; }
+                        .footer { font-size: 12px; color: #777; margin-top: 20px; }
+                    </style>
+                </head>
+                <body>
+                    <div class="receipt">
+                        <h2>Şaka Bank Dekont</h2>
+                        <p><strong>Kullanıcı:</strong> ${username}</p>
+                        <p><strong>İşlem:</strong> ${entry}</p>
+                        <p><strong>Tarih:</strong> ${new Date().toLocaleString()}</p>
+                        <p><strong>Bakiye:</strong> ${balance} TL</p>
+                        <p class="footer">Şaka Bank - Paranızı şakaya vuruyoruz!</p>
+                    </div>
+                </body>
+                </html>
+            `);
+            receiptWindow.document.close();
         }
 
         function applyCredit() {
             const amount = parseInt(document.getElementById("creditAmount").value);
             if (isNaN(amount) || amount <= 0) {
-                document.getElementById("creditJoke").innerText = "Lütfen geçerli bir miktar girin! (Sıfır kredi mi olur?)";
+                document.getElementById("creditJoke").innerText = "Geçerli bir miktar gir, şaka değil!";
             } else {
                 balance += amount;
                 updateBalance();
                 addHistory(`Kredi Onaylandı: ${amount} TL`);
-                document.getElementById("creditJoke").innerText = `Tebrikler! ${amount} TL kredi onaylandı! (Ama mumin, yine de bakiyene ekledik!)`;
+                document.getElementById("creditJoke").innerText = `${amount} TL kredi onaylandı! (Şaka ama ekledik!)`;
                 document.getElementById("creditAmount").value = "";
             }
-        }
-
-        function sendSupport() {
-            const replies = [
-                "Sorununuzu çözdük! (mumin yaptık, çözmedik)",
-                "Müşteri temsilcimiz şu an kahve molasında!",
-                "Bize yazdığın için teşekkürler, ama okuyamadık!"
-            ];
-            document.getElementById("supportJoke").innerText = replies[Math.floor(Math.random() * replies.length)];
-            document.getElementById("supportMsg").value = "";
         }
 
         function sendMoney() {
@@ -358,21 +657,135 @@
             const note = document.getElementById("transferNote").value || "Açıklama yok";
 
             if (!iban || isNaN(amount) || amount <= 0) {
-                document.getElementById("transferJoke").innerText = "Lütfen IBAN ve geçerli bir miktar girin!";
+                document.getElementById("transferJoke").innerText = "IBAN ve miktar gir, şakaya yer yok!";
                 return;
             }
             if (amount > balance) {
-                document.getElementById("transferJoke").innerText = "Yeterli bakiyeniz yok! (Banka mı batıracaksınız?)";
+                document.getElementById("transferJoke").innerText = "Bakiyen yok ki! Şaka mı bu?";
                 return;
             }
 
             balance -= amount;
             updateBalance();
-            addHistory(`Para Gönderme: ${amount} TL - IBAN: ${iban} - Açıklama: ${note}`);
-            document.getElementById("transferJoke").innerText = `${amount} TL gönderildi! (Ya da kedilere bağışlandı, kim bilir?)`;
+            addHistory(`Para Gönderme: ${amount} TL - IBAN: ${iban} - ${note}`);
+            document.getElementById("transferJoke").innerText = `${amount} TL gönderildi! (Ya da parti fonuna gitti!)`;
             document.getElementById("transferIban").value = "";
             document.getElementById("transferAmount").value = "";
             document.getElementById("transferNote").value = "";
+        }
+
+        function donate(org) {
+            const amount = parseInt(document.getElementById("donationAmount").value);
+            if (isNaN(amount) || amount <= 0) {
+                document.getElementById("donationJoke").innerText = "Bağış için geçerli bir miktar gir!";
+                return;
+            }
+            if (amount > balance) {
+                document.getElementById("donationJoke").innerText = "Bu kadar paran yok, şaka mı yapıyorsun?";
+                return;
+            }
+
+            balance -= amount;
+            updateBalance();
+            addHistory(`Bağış: ${amount} TL - ${org}`);
+            document.getElementById("donationJoke").innerText = `${amount} TL ${org}’ne bağışlandı! (Ya da şaka kutusuna!)`;
+            document.getElementById("donationAmount").value = "";
+        }
+
+        function sendSupport() {
+            const replies = [
+                "Mesajın alındı! (Ama şaka, çözmeyeceğiz)",
+                "Destek ekibi şu an oyun oynuyor!",
+                "Yazdığın şey komik ama cevap yok!"
+            ];
+            document.getElementById("supportJoke").innerText = replies[Math.floor(Math.random() * replies.length)];
+            document.getElementById("supportMsg").value = "";
+        }
+
+        function payBill() {
+            const billType = document.getElementById("billType").value;
+            const amount = parseInt(document.getElementById("billAmount").value);
+            const billNumber = document.getElementById("billNumber").value;
+
+            if (isNaN(amount) || amount <= 0 || !billNumber) {
+                document.getElementById("billJoke").innerText = "Fatura bilgilerini doğru gir, şaka yapma!";
+                return;
+            }
+            if (amount > balance) {
+                document.getElementById("billJoke").innerText = "Bakiyen yetmez, şaka mı bu?";
+                return;
+            }
+
+            balance -= amount;
+            updateBalance();
+            addHistory(`Fatura Ödeme: ${amount} TL - ${billType} (${billNumber})`);
+            document.getElementById("billJoke").innerText = `${amount} TL’lik ${billType} faturan ödendi!`;
+            document.getElementById("billAmount").value = "";
+            document.getElementById("billNumber").value = "";
+        }
+
+        function payCreditCard() {
+            const amount = parseInt(document.getElementById("cardPaymentAmount").value);
+            if (isNaN(amount) || amount <= 0) {
+                document.getElementById("cardJoke").innerText = "Geçerli bir miktar gir!";
+                return;
+            }
+            if (amount > balance) {
+                document.getElementById("cardJoke").innerText = "Bakiyen yok, kartı ödeyemezsin!";
+                return;
+            }
+            if (amount > cardBalance) {
+                document.getElementById("cardJoke").innerText = "Bu kadar borcun yok, şaka mı bu?";
+                return;
+            }
+
+            balance -= amount;
+            cardBalance -= amount;
+            updateBalance();
+            document.getElementById("cardBalance").innerText = `${cardBalance} TL`;
+            addHistory(`Kredi Kartı Ödeme: ${amount} TL`);
+            document.getElementById("cardJoke").innerText = `${amount} TL kart borcun ödendi!`;
+            document.getElementById("cardPaymentAmount").value = "";
+        }
+
+        function spendCreditCard() {
+            const amount = Math.floor(Math.random() * 500) + 50; // 50-550 TL arası rastgele harcama
+            cardBalance += amount;
+            document.getElementById("cardBalance").innerText = `${cardBalance} TL`;
+            addHistory(`Kredi Kartı Harcama: ${amount} TL`);
+            document.getElementById("cardJoke").innerText = `${amount} TL harcadın, şaka gibi değil mi?`;
+        }
+
+        function invest() {
+            const amount = parseInt(document.getElementById("investmentAmount").value);
+            const term = parseInt(document.getElementById("investmentTerm").value);
+            if (isNaN(amount) || amount <= 0) {
+                document.getElementById("investmentJoke").innerText = "Geçerli bir miktar gir!";
+                return;
+            }
+            if (amount > balance) {
+                document.getElementById("investmentJoke").innerText = "Bu kadar paran yok!";
+                return;
+            }
+
+            balance -= amount;
+            const interestRate = term === 3 ? 0.05 : term === 6 ? 0.10 : 0.20;
+            const profit = amount * interestRate;
+            const totalReturn = amount + profit;
+
+            investments.push({ amount, term, profit, matured: false });
+            updateBalance();
+            addHistory(`Yatırım: ${amount} TL (${term} ay, %${interestRate * 100} faiz)`);
+            document.getElementById("investmentJoke").innerText = `${amount} TL yatırdın, ${term} ay sonra ${totalReturn} TL olacak!`;
+
+            setTimeout(() => {
+                balance += totalReturn;
+                updateBalance();
+                addHistory(`Yatırım Vadesi Doldu: ${totalReturn} TL`);
+                document.getElementById("investmentJoke").innerText = `${term} ay bitti, ${totalReturn} TL hesabına eklendi!`;
+            }, term * 10000); // Gerçek zaman yerine test için 10 saniye çarpanı
+
+            document.getElementById("investmentAmount").value = "";
         }
     </script>
 </body>
