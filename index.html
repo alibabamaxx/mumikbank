@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Şaka Bank - Genç Bankacılık</title>
+    <title>Mumin Bank - Genç Bankacılık</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -347,7 +347,7 @@
 </head>
 <body>
     <div class="login-container" id="login">
-        <img src="https://via.placeholder.com/200x60?text=Şaka+Bank" alt="Şaka Bank Logo" class="logo">
+        <img src="https://via.placeholder.com/200x60?text=Mumin+Bank" alt="Mumin Bank Logo" class="logo">
         <div class="input-box">
             <input type="text" id="username" placeholder="Kullanıcı Adı">
             <input type="password" id="password" placeholder="Şifre">
@@ -374,7 +374,7 @@
         </div>
         <div class="main-container" id="main">
             <div class="header">
-                <h1>Şaka Bank</h1>
+                <h1>Mumin Bank</h1>
                 <div class="welcome-text" id="welcomeText">Hoş geldin!</div>
             </div>
             <p class="balance" id="balanceText">Bakiye: <span id="fakeBalance">0 TL</span></p>
@@ -392,7 +392,7 @@
             <div id="account" class="section active">
                 <h3 style="margin-top: 25px;">Hesap Geçmişi</h3>
                 <div class="history" id="history"></div>
-                <div class="joke-box" id="jokeText">Şaka Bank’a hoş geldin! Paranı güvende tutmama sözü!</div>
+                <div class="joke-box" id="jokeText">Mumin Bank’a hoş geldin! Paranı güvende tutmama sözü!</div>
             </div>
             <div id="credit" class="section">
                 <div class="input-box">
@@ -461,7 +461,7 @@
                         <span>Bağış Yap</span>
                     </div>
                 </div>
-                <div class="joke-box" id="donationJoke">Bağışınla dünyayı şakalara boğ!</div>
+                <div class="joke-box" id="donationJoke">Bağışınla dünyayı Muminlara boğ!</div>
             </div>
             <div id="support" class="section">
                 <div class="input-box">
@@ -486,7 +486,7 @@
                     <input type="text" id="billNumber" placeholder="Fatura numarasını gir">
                 </div>
                 <button class="button" onclick="payBill()">Öde</button>
-                <div class="joke-box" id="billJoke">Faturalarını öde, şaka değil!</div>
+                <div class="joke-box" id="billJoke">Faturalarını öde, Mumin değil!</div>
             </div>
             <div id="creditCard" class="section">
                 <h3>Kredi Kartı</h3>
@@ -497,7 +497,7 @@
                 </div>
                 <button class="button" onclick="payCreditCard()">Öde</button>
                 <button class="button" onclick="spendCreditCard()">Harcama Yap (Rastgele)</button>
-                <div class="joke-box" id="cardJoke">Kredi kartınla şaka yapma!</div>
+                <div class="joke-box" id="cardJoke">Kredi kartınla Mumin yapma!</div>
             </div>
             <div id="investment" class="section">
                 <div class="input-box">
@@ -511,13 +511,13 @@
                     </select>
                 </div>
                 <button class="button" onclick="invest()">Yatır</button>
-                <div class="joke-box" id="investmentJoke">Paran büyüsün... ya da şaka olsun!</div>
+                <div class="joke-box" id="investmentJoke">Paran büyüsün... ya da Mumin olsun!</div>
             </div>
         </div>
     </div>
 
     <div class="footer" id="footer" style="display: none;">
-        <p>Şaka Bank © 2025 | <a href="#">Gizlilik</a> | <a href="#">Şartlar</a> | <a href="#">İletişim</a></p>
+        <p>Mumin Bank © 2025 | <a href="#">Gizlilik</a> | <a href="#">Şartlar</a> | <a href="#">İletişim</a></p>
     </div>
 
     <script>
@@ -579,7 +579,7 @@
 
         function surprise() {
             const surprises = [
-                "Hesabına 1 milyon TL yattı! (Şaka şaka)",
+                "Hesabına 1 milyon TL yattı! (Mumin Mumin)",
                 "Paran sokak DJ’lerine gitti!",
                 "Hesabın hacklendi! Ama zaten boştu."
             ];
@@ -614,7 +614,7 @@
             receiptWindow.document.write(`
                 <html>
                 <head>
-                    <title>Şaka Bank Dekont</title>
+                    <title>Mumin Bank Dekont</title>
                     <style>
                         body { font-family: 'Poppins', Arial, sans-serif; padding: 20px; text-align: center; }
                         .receipt { border: 2px solid #d32f2f; padding: 20px; border-radius: 15px; max-width: 500px; margin: 0 auto; }
@@ -625,12 +625,12 @@
                 </head>
                 <body>
                     <div class="receipt">
-                        <h2>Şaka Bank Dekont</h2>
+                        <h2>Mumin Bank Dekont</h2>
                         <p><strong>Kullanıcı:</strong> ${username}</p>
                         <p><strong>İşlem:</strong> ${entry}</p>
                         <p><strong>Tarih:</strong> ${new Date().toLocaleString()}</p>
                         <p><strong>Bakiye:</strong> ${balance} TL</p>
-                        <p class="footer">Şaka Bank - Paranızı şakaya vuruyoruz!</p>
+                        <p class="footer">Mumin Bank - Paranızı Muminya vuruyoruz!</p>
                     </div>
                 </body>
                 </html>
@@ -641,12 +641,12 @@
         function applyCredit() {
             const amount = parseInt(document.getElementById("creditAmount").value);
             if (isNaN(amount) || amount <= 0) {
-                document.getElementById("creditJoke").innerText = "Geçerli bir miktar gir, şaka değil!";
+                document.getElementById("creditJoke").innerText = "Geçerli bir miktar gir, Mumin değil!";
             } else {
                 balance += amount;
                 updateBalance();
                 addHistory(`Kredi Onaylandı: ${amount} TL`);
-                document.getElementById("creditJoke").innerText = `${amount} TL kredi onaylandı! (Şaka ama ekledik!)`;
+                document.getElementById("creditJoke").innerText = `${amount} TL kredi onaylandı! (Mumin ama ekledik!)`;
                 document.getElementById("creditAmount").value = "";
             }
         }
@@ -657,11 +657,11 @@
             const note = document.getElementById("transferNote").value || "Açıklama yok";
 
             if (!iban || isNaN(amount) || amount <= 0) {
-                document.getElementById("transferJoke").innerText = "IBAN ve miktar gir, şakaya yer yok!";
+                document.getElementById("transferJoke").innerText = "IBAN ve miktar gir, Muminya yer yok!";
                 return;
             }
             if (amount > balance) {
-                document.getElementById("transferJoke").innerText = "Bakiyen yok ki! Şaka mı bu?";
+                document.getElementById("transferJoke").innerText = "Bakiyen yok ki! Mumin mı bu?";
                 return;
             }
 
@@ -681,20 +681,20 @@
                 return;
             }
             if (amount > balance) {
-                document.getElementById("donationJoke").innerText = "Bu kadar paran yok, şaka mı yapıyorsun?";
+                document.getElementById("donationJoke").innerText = "Bu kadar paran yok, Mumin mı yapıyorsun?";
                 return;
             }
 
             balance -= amount;
             updateBalance();
             addHistory(`Bağış: ${amount} TL - ${org}`);
-            document.getElementById("donationJoke").innerText = `${amount} TL ${org}’ne bağışlandı! (Ya da şaka kutusuna!)`;
+            document.getElementById("donationJoke").innerText = `${amount} TL ${org}’ne bağışlandı! (Ya da Mumin kutusuna!)`;
             document.getElementById("donationAmount").value = "";
         }
 
         function sendSupport() {
             const replies = [
-                "Mesajın alındı! (Ama şaka, çözmeyeceğiz)",
+                "Mesajın alındı! (Ama Mumin, çözmeyeceğiz)",
                 "Destek ekibi şu an oyun oynuyor!",
                 "Yazdığın şey komik ama cevap yok!"
             ];
@@ -708,11 +708,11 @@
             const billNumber = document.getElementById("billNumber").value;
 
             if (isNaN(amount) || amount <= 0 || !billNumber) {
-                document.getElementById("billJoke").innerText = "Fatura bilgilerini doğru gir, şaka yapma!";
+                document.getElementById("billJoke").innerText = "Fatura bilgilerini doğru gir, Mumin yapma!";
                 return;
             }
             if (amount > balance) {
-                document.getElementById("billJoke").innerText = "Bakiyen yetmez, şaka mı bu?";
+                document.getElementById("billJoke").innerText = "Bakiyen yetmez, Mumin mı bu?";
                 return;
             }
 
@@ -735,7 +735,7 @@
                 return;
             }
             if (amount > cardBalance) {
-                document.getElementById("cardJoke").innerText = "Bu kadar borcun yok, şaka mı bu?";
+                document.getElementById("cardJoke").innerText = "Bu kadar borcun yok, Mumin mı bu?";
                 return;
             }
 
@@ -753,7 +753,7 @@
             cardBalance += amount;
             document.getElementById("cardBalance").innerText = `${cardBalance} TL`;
             addHistory(`Kredi Kartı Harcama: ${amount} TL`);
-            document.getElementById("cardJoke").innerText = `${amount} TL harcadın, şaka gibi değil mi?`;
+            document.getElementById("cardJoke").innerText = `${amount} TL harcadın, Mumin gibi değil mi?`;
         }
 
         function invest() {
