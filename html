@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şaka Bank - Giriş</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e6eef5, #c9d6df);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            width: 450px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .logo {
+            width: 180px;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+        }
+        .input-box input, .input-box textarea {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border: 1px solid #d1d9e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        .input-box textarea {
+            resize: vertical;
+            height: 80px;
+        }
+        .input-box input:focus, .input-box textarea:focus {
+            border-color: #0066cc;
+            outline: none;
+        }
+        .login-button {
+            background-color: #0066cc;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .login-button:hover {
+            background-color: #005bb5;
+            transform: translateY(-2px);
+        }
+        .loading-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 26px;
+            flex-direction: column;
+            z-index: 1000;
+        }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #0066cc;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-top: 25px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .main-container {
+            display: none;
+            margin: 40px auto;
+            max-width: 1000px;
+            background-color: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(90deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+            margin: -50px -50px 30px -50px;
+        }
+        .welcome-text {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .nav button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .nav button:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .section {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9fafb;
+            border-radius: 10px;
+        }
+        .active {
+            display: block;
+        }
+        .button {
+            background-color: #e67e22;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .button:hover {
+            background-color: #d35400;
+            transform: translateY(-2px);
+        }
+        .balance {
+            font-size: 32px;
+            margin: 25px 0;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .balance.red {
+            color: #e74c3c;
+        }
+        .balance.green {
+            color: #27ae60;
+        }
+        .history {
+            text-align: left;
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid #e6ecef;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: white;
+        }
+        .joke-box {
+            margin: 25px 0;
+            font-size: 18px;
+            color: #e74c3c;
+            font-style: italic;
+            background-color: #fff3f3;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="login">
+        <img src="https://yt3.googleusercontent.com/D6fqYWdJlRhqy2JrXSJnIEkTojWiXbarjlLTvL4kqiXUdvDGdk7rJzTitk_cqDSZTY2tCXC2eg=s900-c-k-c0x00ffffff-no-rj" alt="Şaka Bank Logo" class="logo">
+        <h2>Şaka Bank'a Hoş Geldiniz</h2>
+        <div class="input-box">
+            <input type="text" id="username" placeholder="Kullanıcı Adı">
+            <input type="password" id="password" placeholder="Şifre">
+        </div>
+        <button class="login-button" onclick="login()">Giriş Yap</button>
+    </div>
+
+    <div class="loading-screen" id="loading">
+        <div>Başarılı, Yönlendiriliyor...</div>
+        <div class="spinner"></div>
+    </div>
+
+    <div class="main-container" id="main">
+        <div class="header">
+            <h1>Şaka Bank</h1>
+            <p>Paranızı Kaybetmenin En Şık Yolu!</p>
+            <div class="welcome-text" id="welcomeText">Hoş geldiniz!</div>
+        </div>
+        <div class="nav">
+            <button onclick="showSection('account')">Hesap</button>
+            <button onclick="showSection('credit')">Kredi Başvurusu</button>
+            <button onclick="showSection('support')">Müşteri Hizmetleri</button>
+            <button onclick="showSection('transfer')">Para Gönderme</button>
+        </div>
+        <div id="account" class="section active">
+            <h2>Hesap Bilgileri</h2>
+            <p class="balance" id="balanceText">Bakiye: <span id="fakeBalance">0 TL</span></p>
+            <button class="button" onclick="deposit()">Para Yatır</button>
+            <button class="button" onclick="withdraw()">Para Çek</button>
+            <button class="button" onclick="surprise()">Sürpriz İşlem</button>
+            <h3>Hesap Geçmişi</h3>
+            <div class="history" id="history"></div>
+            <div class="joke-box" id="jokeText">Bankamıza hoş geldiniz!</div>
+        </div>
+        <div id="credit" class="section">
+            <h2>Kredi Başvurusu</h2>
+            <input type="number" id="creditAmount" placeholder="Kredi Miktarı (TL)" class="input-box">
+            <button class="button" onclick="applyCredit()">Başvur</button>
+            <div class="joke-box" id="creditJoke">Kredi mi? Belki bir lolipop veririz!</div>
+        </div>
+        <div id="support" class="section">
+            <h2>Müşteri Hizmetleri</h2>
+            <input type="text" id="supportMsg" placeholder="Sorununuzu yazın" class="input-box">
+            <button class="button" onclick="sendSupport()">Gönder</button>
+            <div class="joke-box" id="supportJoke">Size hemen yardımcı ol(a)mayacağız!</div>
+        </div>
+        <div id="transfer" class="section">
+            <h2>Para Gönderme</h2>
+            <div class="input-box">
+                <input type="text" id="transferIban" placeholder="IBAN (TR ile başlayabilir)">
+                <input type="number" id="transferAmount" placeholder="Gönderilecek Miktar (TL)">
+                <textarea id="transferNote" placeholder="Açıklama (Opsiyonel)"></textarea>
+            </div>
+            <button class="button" onclick="sendMoney()">Gönder</button>
+            <div class="joke-box" id="transferJoke">Paranızı güvenle... bir yere gönderiyoruz!</div>
+        </div>
+    </div>
+
+    <script>
+        let balance = 0;
+        let history = [];
+        let username = "";
+
+        function login() {
+            username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            if (username === "" || password === "") {
+                alert("Kullanıcı adı veya şifre boş olamaz!");
+                return;
+            }
+            document.getElementById("login").style.display = "none";
+            document.getElementById("loading").style.display = "flex";
+            setTimeout(() => {
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("main").style.display = "block";
+                document.getElementById("welcomeText").innerText = `Hoş geldiniz, ${username}!`;
+            }, 2000);
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll(".section").forEach(section => {
+                section.classList.remove("active");
+            });
+            document.getElementById(sectionId).classList.add("active");
+        }
+
+        function deposit() {
+            const amount = Math.floor(Math.random() * 1000);
+            balance += amount;
+            updateBalance();
+            addHistory(`Para Yatırma: ${amount} TL`);
+            document.getElementById("jokeText").innerText = "Paranı yatırdık... ya da harcadık, kim bilir?";
+        }
+
+        function withdraw() {
+            const amount = Math.min(balance, Math.floor(Math.random() * 200));
+            balance -= amount;
+            updateBalance();
+            addHistory(`Para Çekme: ${amount} TL`);
+            document.getElementById("jokeText").innerText = "Para çekildi! Kasiyerler tatilde harcıyor.";
+        }
+
+        function surprise() {
+            const surprises = [
+                "Hesabına 1 milyon TL yatırdık! (Tabii ki şaka)",
+                "Paranı yanlışlıkla sokak kedilerine bağışladık!",
+                "Hesabın hacklendi! Ama zaten boştu."
+            ];
+            const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
+            const amount = Math.floor(Math.random() * 500);
+            balance += amount;
+            updateBalance();
+            addHistory(`Sürpriz: ${randomSurprise} (+${amount} TL)`);
+            document.getElementById("jokeText").innerText = randomSurprise;
+        }
+
+        function updateBalance() {
+            const balanceElement = document.getElementById("fakeBalance");
+            balanceElement.innerText = `${balance} TL`;
+            const balanceText = document.getElementById("balanceText");
+            balanceText.classList.remove("red", "green");
+            if (balance <= 0) {
+                balanceText.classList.add("red");
+            } else {
+                balanceText.classList.add("green");
+            }
+        }
+
+        function addHistory(entry) {
+            history.unshift(entry);
+            if (history.length > 5) history.pop();
+            document.getElementById("history").innerHTML = history.map(h => `<p>${h}</p>`).join("");
+        }
+
+        function applyCredit() {
+            const amount = parseInt(document.getElementById("creditAmount").value);
+            if (isNaN(amount) || amount <= 0) {
+                document.getElementById("creditJoke").innerText = "Lütfen geçerli bir miktar girin! (Sıfır kredi mi olur?)";
+            } else {
+                balance += amount;
+                updateBalance();
+                addHistory(`Kredi Onaylandı: ${amount} TL`);
+                document.getElementById("creditJoke").innerText = `Tebrikler! ${amount} TL kredi onaylandı! (Ama şaka, yine de bakiyene ekledik!)`;
+                document.getElementById("creditAmount").value = "";
+            }
+        }
+
+        function sendSupport() {
+            const replies = [
+                "Sorununuzu çözdük! (Şaka yaptık, çözmedik)",
+                "Müşteri temsilcimiz şu an kahve molasında!",
+                "Bize yazdığın için teşekkürler, ama okuyamadık!"
+            ];
+            document.getElementById("supportJoke").innerText = replies[Math.floor(Math.random() * replies.length)];
+            document.getElementById("supportMsg").value = "";
+        }
+
+        function sendMoney() {
+            const iban = document.getElementById("transferIban").value;
+            const amount = parseInt(document.getElementById("transferAmount").value);
+            const note = document.getElementById("transferNote").value || "Açıklama yok";
+
+            if (!iban || isNaN(amount) || amount <= 0) {
+                document.getElementById("transferJoke").innerText = "Lütfen IBAN ve geçerli bir miktar girin!";
+                return;
+            }
+            if (amount > balance) {
+                document.getElementById("transferJoke").innerText = "Yeterli bakiyeniz yok! (Banka mı batıracaksınız?)";
+                return;
+            }
+
+            balance -= amount;
+            updateBalance();
+            addHistory(`Para Gönderme: ${amount} TL - IBAN: ${iban} - Açıklama: ${note}`);
+            document.getElementById("transferJoke").innerText = `${amount} TL gönderildi! (Ya da kedilere bağışlandı, kim bilir?)`;
+            document.getElementById("transferIban").value = "";
+            document.getElementById("transferAmount").value = "";
+            document.getElementById("transferNote").value = "";
+        }
+    </script>
+</body>
+</html>
