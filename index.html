@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Şaka Bank - Genç Bankacılık</title>
-    <link href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzV_I9bHqxMPtdKnpM0iyr_MfimxkPEA_IzQ&s">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', Arial, sans-serif;
@@ -15,10 +15,10 @@
             color: #333;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden;
         }
         .login-container {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             padding: 50px;
             border-radius: 30px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.15);
@@ -31,7 +31,6 @@
             opacity: 0;
             animation: fadeIn 0.8s ease-out forwards;
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         @keyframes fadeIn {
@@ -50,7 +49,7 @@
         }
         .input-box {
             position: relative;
-            margin: 20px 0;
+            margin: 25px 0;
         }
         .input-box input {
             width: 100%;
@@ -77,6 +76,7 @@
             font-size: 16px;
             pointer-events: none;
             transition: all 0.3s ease;
+            background: transparent;
         }
         .input-box input:focus + label,
         .input-box input:not(:placeholder-shown) + label {
@@ -167,6 +167,9 @@
             border-radius: 25px;
             padding: 20px;
             box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
         }
         .sidebar h3 {
             color: #d32f2f;
@@ -347,12 +350,12 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-        .donation-options {
+        .donation-options, .campaign-options {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-        .donation-option {
+        .donation-option, .campaign-option {
             background: white;
             padding: 15px;
             border-radius: 15px;
@@ -362,12 +365,17 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.2s;
         }
-        .donation-option:hover {
+        .donation-option:hover, .campaign-option:hover {
             transform: scale(1.02);
         }
-        .donation-option span {
+        .donation-option span, .campaign-option span {
             font-weight: 600;
             color: #d32f2f;
+        }
+        .campaign-option p {
+            margin: 5px 0;
+            font-size: 12px;
+            color: #555;
         }
         .quick-actions {
             display: grid;
@@ -439,6 +447,9 @@
             <div class="sidebar-item" onclick="showSection('bills')">Fatura Ödeme</div>
             <div class="sidebar-item" onclick="showSection('creditCard')">Kredi Kartı</div>
             <div class="sidebar-item" onclick="showSection('investment')">Yatırım</div>
+            <div class="sidebar-item" onclick="showSection('campaigns')">Kampanyalar</div>
+            <div class="sidebar-item" onclick="showSection('exchange')">Döviz</div>
+            <div class="sidebar-item" onclick="showSection('notifications')">Bildirimler</div>
         </div>
         <div class="main-container" id="main">
             <div class="header">
@@ -449,13 +460,13 @@
             <div class="actions">
                 <button class="action-btn" onclick="deposit()">Para Yatır</button>
                 <button class="action-btn" onclick="withdraw()">Para Çek</button>
-                <button class="action-btn" onclick="surprise()">Sürpriz</button>
             </div>
             <div class="quick-actions">
                 <div class="quick-action" onclick="showSection('transfer')"><span>Arkadaşa Gönder</span></div>
                 <div class="quick-action" onclick="showSection('donation')"><span>Bağış Yap</span></div>
                 <div class="quick-action" onclick="showSection('credit')"><span>Kredi Al</span></div>
                 <div class="quick-action" onclick="showSection('bills')"><span>Fatura Öde</span></div>
+                <div class="quick-action" onclick="showSection('campaigns')"><span>Kampanyalar</span></div>
             </div>
             <div id="account" class="section active">
                 <h3 style="margin-top: 25px;">Hesap Geçmişi</h3>
@@ -581,6 +592,55 @@
                 <button class="button" onclick="invest()">Yatır</button>
                 <div class="joke-box" id="investmentJoke">Paran büyüsün... ya da şaka olsun!</div>
             </div>
+            <div id="campaigns" class="section">
+                <h3>Kampanyalar</h3>
+                <div class="campaign-options">
+                    <div class="campaign-option" onclick="joinCampaign('Yaz Fırsatı')">
+                        <div>
+                            <span>Yaz Fırsatı</span>
+                            <p>1000 TL harcayana 100 TL hediye!</p>
+                        </div>
+                        <span>Katıl</span>
+                    </div>
+                    <div class="campaign-option" onclick="joinCampaign('Kredi Kartı Bonusu')">
+                        <div>
+                            <span>Kredi Kartı Bonusu</span>
+                            <p>500 TL harcayana %10 indirim!</p>
+                        </div>
+                        <span>Katıl</span>
+                    </div>
+                    <div class="campaign-option" onclick="joinCampaign('Yatırım Çoşması')">
+                        <div>
+                            <span>Yatırım Çoşması</span>
+                            <p>12 aylık yatırıma ekstra %5 faiz!</p>
+                        </div>
+                        <span>Katıl</span>
+                    </div>
+                </div>
+                <div class="joke-box" id="campaignJoke">Kampanyalarla şaka gibi kazançlar!</div>
+            </div>
+            <div id="exchange" class="section">
+                <h3>Döviz İşlemleri</h3>
+                <div class="input-box">
+                    <label>Döviz Türü</label>
+                    <select id="exchangeType">
+                        <option value="USD">USD (3.30 TL)</option>
+                        <option value="EUR">EUR (3.60 TL)</option>
+                    </select>
+                    <label>Miktar</label>
+                    <input type="number" id="exchangeAmount" placeholder="Döviz miktarını gir">
+                </div>
+                <button class="button" onclick="buyExchange()">Al</button>
+                <button class="button" onclick="sellExchange()">Sat</button>
+                <p>Mevcut Döviz: <span id="usdBalance">0 USD</span>, <span id="eurBalance">0 EUR</span></p>
+                <div class="joke-box" id="exchangeJoke">Dövizle zengin ol... ya da şaka yap!</div>
+            </div>
+            <div id="notifications" class="section">
+                <h3>Bildirimler</h3>
+                <div class="history" id="notificationList"></div>
+                <button class="button" onclick="clearNotifications()">Tümünü Temizle</button>
+                <div class="joke-box" id="notificationJoke">Bildirimlerin şaka değil, gerçek!</div>
+            </div>
         </div>
     </div>
 
@@ -591,9 +651,12 @@
     <script>
         let balance = 0;
         let history = [];
+        let notifications = [];
         let username = "";
         let cardBalance = 0;
         let investments = [];
+        let usdBalance = 0;
+        let eurBalance = 0;
 
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("login").style.display = "block";
@@ -615,6 +678,7 @@
                 document.getElementById("wrapper").style.display = "flex";
                 document.getElementById("footer").style.display = "block";
                 document.getElementById("welcomeText").innerText = `Hoş geldin, ${username}!`;
+                addNotification("Başarıyla giriş yaptınız!");
             }, 2000);
         }
 
@@ -634,6 +698,7 @@
             balance += amount;
             updateBalance();
             addHistory(`Para Yatırma: ${amount} TL`);
+            addNotification(`${amount} TL hesabınıza yatırıldı!`);
             document.getElementById("jokeText").innerText = "Paran yattı... ya da parti fonuna gitti!";
         }
 
@@ -642,21 +707,8 @@
             balance -= amount;
             updateBalance();
             addHistory(`Para Çekme: ${amount} TL`);
+            addNotification(`${amount} TL hesabınızdan çekildi!`);
             document.getElementById("jokeText").innerText = "Paran çekildi! Kahve makinesi teşekkür eder.";
-        }
-
-        function surprise() {
-            const surprises = [
-                "Hesabına 1 milyon TL yattı! (Şaka şaka)",
-                "Paran sokak DJ’lerine gitti!",
-                "Hesabın hacklendi! Ama zaten boştu."
-            ];
-            const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
-            const amount = Math.floor(Math.random() * 500);
-            balance += amount;
-            updateBalance();
-            addHistory(`Sürpriz: ${randomSurprise} (+${amount} TL)`);
-            document.getElementById("jokeText").innerText = randomSurprise;
         }
 
         function updateBalance() {
@@ -675,6 +727,20 @@
             document.getElementById("history").innerHTML = history.map(h => 
                 `<p>${h} <span>${new Date().toLocaleTimeString()}</span> <button onclick="generateReceipt('${h}')">Dekont İste</button></p>`
             ).join("");
+        }
+
+        function addNotification(message) {
+            notifications.unshift(message);
+            if (notifications.length > 5) notifications.pop();
+            document.getElementById("notificationList").innerHTML = notifications.map(n => 
+                `<p>${n} <span>${new Date().toLocaleTimeString()}</span></p>`
+            ).join("");
+        }
+
+        function clearNotifications() {
+            notifications = [];
+            document.getElementById("notificationList").innerHTML = "";
+            document.getElementById("notificationJoke").innerText = "Bildirimler temizlendi, şaka bitti!";
         }
 
         function generateReceipt(entry) {
@@ -714,6 +780,7 @@
                 balance += amount;
                 updateBalance();
                 addHistory(`Kredi Onaylandı: ${amount} TL`);
+                addNotification(`${amount} TL kredi onaylandı!`);
                 document.getElementById("creditJoke").innerText = `${amount} TL kredi onaylandı! (Şaka ama ekledik!)`;
                 document.getElementById("creditAmount").value = "";
             }
@@ -736,6 +803,7 @@
             balance -= amount;
             updateBalance();
             addHistory(`Para Gönderme: ${amount} TL - IBAN: ${iban} - ${note}`);
+            addNotification(`${amount} TL gönderildi!`);
             document.getElementById("transferJoke").innerText = `${amount} TL gönderildi! (Ya da parti fonuna gitti!)`;
             document.getElementById("transferIban").value = "";
             document.getElementById("transferAmount").value = "";
@@ -756,6 +824,7 @@
             balance -= amount;
             updateBalance();
             addHistory(`Bağış: ${amount} TL - ${org}`);
+            addNotification(`${amount} TL ${org}’ne bağışlandı!`);
             document.getElementById("donationJoke").innerText = `${amount} TL ${org}’ne bağışlandı! (Ya da şaka kutusuna!)`;
             document.getElementById("donationAmount").value = "";
         }
@@ -766,7 +835,9 @@
                 "Destek ekibi şu an oyun oynuyor!",
                 "Yazdığın şey komik ama cevap yok!"
             ];
-            document.getElementById("supportJoke").innerText = replies[Math.floor(Math.random() * replies.length)];
+            const reply = replies[Math.floor(Math.random() * replies.length)];
+            document.getElementById("supportJoke").innerText = reply;
+            addNotification("Destek mesajınız alındı!");
             document.getElementById("supportMsg").value = "";
         }
 
@@ -787,6 +858,7 @@
             balance -= amount;
             updateBalance();
             addHistory(`Fatura Ödeme: ${amount} TL - ${billType} (${billNumber})`);
+            addNotification(`${amount} TL’lik ${billType} faturası ödendi!`);
             document.getElementById("billJoke").innerText = `${amount} TL’lik ${billType} faturan ödendi!`;
             document.getElementById("billAmount").value = "";
             document.getElementById("billNumber").value = "";
@@ -812,6 +884,7 @@
             updateBalance();
             document.getElementById("cardBalance").innerText = `${cardBalance} TL`;
             addHistory(`Kredi Kartı Ödeme: ${amount} TL`);
+            addNotification(`${amount} TL kart borcu ödendi!`);
             document.getElementById("cardJoke").innerText = `${amount} TL kart borcun ödendi!`;
             document.getElementById("cardPaymentAmount").value = "";
         }
@@ -821,6 +894,7 @@
             cardBalance += amount;
             document.getElementById("cardBalance").innerText = `${cardBalance} TL`;
             addHistory(`Kredi Kartı Harcama: ${amount} TL`);
+            addNotification(`${amount} TL kredi kartıyla harcandı!`);
             document.getElementById("cardJoke").innerText = `${amount} TL harcadın, şaka gibi değil mi?`;
         }
 
@@ -837,23 +911,108 @@
             }
 
             balance -= amount;
-            const interestRate = term === 3 ? 0.05 : term === 6 ? 0.10 : 0.20;
+            let interestRate = term === 3 ? 0.05 : term === 6 ? 0.10 : 0.20;
+            if (investments.some(i => i.campaign === "Yatırım Çoşması") && term === 12) {
+                interestRate += 0.05; // Kampanya bonusu
+            }
             const profit = amount * interestRate;
             const totalReturn = amount + profit;
 
-            investments.push({ amount, term, profit, matured: false });
+            investments.push({ amount, term, profit, matured: false, campaign: investments.some(i => i.campaign === "Yatırım Çoşması") ? "Yatırım Çoşması" : null });
             updateBalance();
             addHistory(`Yatırım: ${amount} TL (${term} ay, %${interestRate * 100} faiz)`);
+            addNotification(`${amount} TL yatırım yapıldı!`);
             document.getElementById("investmentJoke").innerText = `${amount} TL yatırdın, ${term} ay sonra ${totalReturn} TL olacak!`;
 
             setTimeout(() => {
                 balance += totalReturn;
                 updateBalance();
                 addHistory(`Yatırım Vadesi Doldu: ${totalReturn} TL`);
+                addNotification(`${term} ay bitti, ${totalReturn} TL hesabınıza eklendi!`);
                 document.getElementById("investmentJoke").innerText = `${term} ay bitti, ${totalReturn} TL hesabına eklendi!`;
             }, term * 10000);
 
             document.getElementById("investmentAmount").value = "";
+        }
+
+        function joinCampaign(campaign) {
+            let message = "";
+            if (campaign === "Yaz Fırsatı") {
+                message = "Yaz Fırsatı’na katıldın! 1000 TL harca, 100 TL kazan!";
+            } else if (campaign === "Kredi Kartı Bonusu") {
+                message = "Kredi Kartı Bonusu’na katıldın! 500 TL harca, %10 indirim al!";
+            } else if (campaign === "Yatırım Çoşması") {
+                message = "Yatırım Çoşması’na katıldın! 12 aylık yatırımlarda ekstra %5 faiz!";
+            }
+            addNotification(message);
+            document.getElementById("campaignJoke").innerText = `${campaign} kampanyasına katıldın!`;
+            if (campaign === "Yaz Fırsatı" && cardBalance >= 1000) {
+                balance += 100;
+                updateBalance();
+                addNotification("1000 TL harcadın, 100 TL hediye kazandın!");
+            } else if (campaign === "Kredi Kartı Bonusu" && cardBalance >= 500) {
+                const discount = cardBalance * 0.10;
+                cardBalance -= discount;
+                document.getElementById("cardBalance").innerText = `${cardBalance} TL`;
+                addNotification(`500 TL harcadın, ${discount} TL indirim kazandın!`);
+            }
+        }
+
+        function buyExchange() {
+            const type = document.getElementById("exchangeType").value;
+            const amount = parseInt(document.getElementById("exchangeAmount").value);
+            const rate = type === "USD" ? 3.30 : 3.60;
+            const cost = amount * rate;
+
+            if (isNaN(amount) || amount <= 0) {
+                document.getElementById("exchangeJoke").innerText = "Geçerli bir miktar gir!";
+                return;
+            }
+            if (cost > balance) {
+                document.getElementById("exchangeJoke").innerText = "Bakiyen yetmez!";
+                return;
+            }
+
+            balance -= cost;
+            if (type === "USD") usdBalance += amount;
+            else eurBalance += amount;
+            updateBalance();
+            updateExchange();
+            addHistory(`${amount} ${type} Alımı: ${cost} TL`);
+            addNotification(`${amount} ${type} aldın!`);
+            document.getElementById("exchangeJoke").innerText = `${amount} ${type} aldın!`;
+            document.getElementById("exchangeAmount").value = "";
+        }
+
+        function sellExchange() {
+            const type = document.getElementById("exchangeType").value;
+            const amount = parseInt(document.getElementById("exchangeAmount").value);
+            const rate = type === "USD" ? 3.30 : 3.60;
+            const value = amount * rate;
+
+            if (isNaN(amount) || amount <= 0) {
+                document.getElementById("exchangeJoke").innerText = "Geçerli bir miktar gir!";
+                return;
+            }
+            if (type === "USD" && amount > usdBalance || type === "EUR" && amount > eurBalance) {
+                document.getElementById("exchangeJoke").innerText = "Bu kadar dövizin yok!";
+                return;
+            }
+
+            balance += value;
+            if (type === "USD") usdBalance -= amount;
+            else eurBalance -= amount;
+            updateBalance();
+            updateExchange();
+            addHistory(`${amount} ${type} Satışı: ${value} TL`);
+            addNotification(`${amount} ${type} sattın!`);
+            document.getElementById("exchangeJoke").innerText = `${amount} ${type} sattın!`;
+            document.getElementById("exchangeAmount").value = "";
+        }
+
+        function updateExchange() {
+            document.getElementById("usdBalance").innerText = `${usdBalance} USD`;
+            document.getElementById("eurBalance").innerText = `${eurBalance} EUR`;
         }
     </script>
 </body>
